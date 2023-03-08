@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ERC</string>
+    <string name="app_name">Currency Converter</string>
 
     <string-array name="currency_codes">
         <item>USD</item>
