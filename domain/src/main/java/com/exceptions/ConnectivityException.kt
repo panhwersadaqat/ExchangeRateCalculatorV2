@@ -1,4 +1,4 @@
-package com.domain.exceptions
+package com.exceptions
 
 import java.io.IOException
 

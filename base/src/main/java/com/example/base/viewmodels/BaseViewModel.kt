@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.base.events.BaseDataEvents
 import com.example.base.events.BaseEvent
-import com.domain.exceptions.*
+import com.exceptions.*
 import java.io.EOFException
 
 open class BaseViewModel : ViewModel() {
