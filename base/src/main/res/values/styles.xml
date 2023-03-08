@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="animated_popup_scale_type">
+        <item name="android:windowEnterAnimation">@anim/scale_popup_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_popup_out</item>
+    </style>
+
+    <style name="animated_popup_top_down">
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/dialog_slide_down</item>
+    </style>
+
+    <style name="animated_popup">
+        <item name="android:windowEnterAnimation">@anim/scale_popup_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_popup_out</item>
+    </style>
+</resources>
