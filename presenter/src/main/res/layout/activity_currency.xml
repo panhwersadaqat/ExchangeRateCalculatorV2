@@ -7,108 +7,248 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="32dp"
-        tools:context=".CurrencyActivity">
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        tools:context=".view.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilFrom"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:hint="Enter Amount"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/txtContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text=""
+                android:textColor="@color/main_green"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.885"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.022"
+                tools:ignore="RelativeOverlap" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFrom"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="numberDecimal" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/currency"
+                android:textColor="@color/main_blue"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtContact"
+                app:layout_constraintVertical_bias="0.0" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tvFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="From"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/tilFrom"
-            app:layout_constraintTop_toBottomOf="@+id/tilFrom" />
-
-        <TextView
-            android:id="@+id/tvTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="To"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/spToCurrency"
-            app:layout_constraintTop_toBottomOf="@+id/tilFrom" />
+            <TextView
+                android:id="@+id/txtCalaculator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/converter"
+                android:textColor="@color/main_blue"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.144"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintVertical_bias="0.0" />
 
 
-        <Spinner
-            android:id="@+id/spFromCurrency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:entries="@array/currency_codes"
-            android:padding="15dp"
-            android:background="@drawable/custom_shape"
-            app:layout_constraintStart_toStartOf="@+id/tvFrom"
-            app:layout_constraintTop_toBottomOf="@+id/tvFrom" />
+            <TextView
+                android:id="@+id/txtFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/from"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.106"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/spToCurrency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/custom_shape"
-            android:entries="@array/currency_codes"
-            android:padding="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTo" />
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spnFirstCountry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/afn"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFrom"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/btnConvert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Convert"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spToCurrency" />
+            <TextView
+                android:id="@+id/txtTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/to"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.106"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spnFirstCountry"
+                app:layout_constraintVertical_bias="0.031" />
 
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnConvert"
-            app:layout_constraintEnd_toStartOf="@+id/btnConvert"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnConvert"
-            tools:text="xx EUR = xx USD" />
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spnSecondCountry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/afn"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTo"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/btnConvert"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnConvert"
-            tools:visibility="visible" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/txtFirstCurrencyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.896"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spnSecondCountry"
+                app:layout_constraintVertical_bias="0.073" />
+
+            <EditText
+                android:id="@+id/etFirstCurrency"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/custom_shape"
+                android:ellipsize="start"
+                android:hint="@string/amount"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFirstCurrencyName"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/btnConvert"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_shape"
+                android:text="@string/convert"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etFirstCurrency"
+                app:layout_constraintVertical_bias="0.123" />
+
+            <ProgressBar
+                android:id="@+id/prgLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.479"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnConvert"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytResult"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.896"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.23"
+                app:layout_constraintTop_toBottomOf="@+id/btnConvert">
+
+                <TextView
+                    android:id="@+id/txtResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/result" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtSecondCurrencyName"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/etSecondCurrency"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_shape"
+                android:enabled="false"
+                android:hint="@string/converted_amount"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lytResult"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="LabelFor" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>
