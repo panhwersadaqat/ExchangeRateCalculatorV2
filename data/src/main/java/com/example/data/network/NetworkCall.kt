@@ -13,7 +13,6 @@ import com.squareup.moshi.Moshi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -66,7 +65,7 @@ class NetworkCall @Inject constructor(
         val requestBodyMap = HashMap<String, @kotlin.jvm.JvmSuppressWildcards RequestBody>()
         if (bodyMap != null) {
             for ((key, value) in bodyMap) {
-                requestBodyMap[key] = RequestBody.create("text/plain".toMediaTypeOrNull(), value)
+                requestBodyMap[key] = RequestBody.create(MediaType.parse("text/plain"), value)
             }
         }
         Applog.d("bodyMap",bodyMap.toString())
@@ -122,7 +121,7 @@ class NetworkCall @Inject constructor(
         bodyMap: String
     )//data params
             : Any? {
-        val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), bodyMap)
+        val requestBody = RequestBody.create(MediaType.parse("application/json"), bodyMap)
 
 
         return generalRequest<T>(suspend { apiInterface.post(endpoint, requestBody) })
@@ -138,7 +137,7 @@ class NetworkCall @Inject constructor(
     )//data params
             : Any? {
 
-        val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), bodyMap)
+        val requestBody = RequestBody.create(MediaType.parse("application/json"), bodyMap)
 
 
         return generalRequest<T>({ apiInterface.post(endpoint, requestBody, queryMap) })
@@ -155,7 +154,7 @@ class NetworkCall @Inject constructor(
         val requestBodyMap = HashMap<String, @kotlin.jvm.JvmSuppressWildcards RequestBody>()
         if (bodyMap != null) {
             for ((key, value) in bodyMap) {
-                requestBodyMap[key] = RequestBody.create("text/plain".toMediaTypeOrNull(), value)
+                requestBodyMap[key] = RequestBody.create(MediaType.parse("text/plain"), value)
             }
         }
         Applog.d("bodyMap",bodyMap.toString())

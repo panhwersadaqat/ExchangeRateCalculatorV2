@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class TokenAuthenticator @Inject constructor() : Authenticator{
     override fun authenticate(route: Route?, response: Response): Request? {
         Applog.d("response: ${response.toString()}")
-       return response.request.newBuilder().build()
+       return response.request().newBuilder().build()
     }
 
 }

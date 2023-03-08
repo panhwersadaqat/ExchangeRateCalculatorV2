@@ -3,7 +3,6 @@ package com.example.data.network
 import com.example.data.util.Applog
 import com.example.data.util.InternetConnection
 import com.exceptions.ConnectivityException
-import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -12,9 +11,8 @@ import javax.inject.Singleton
 
 @Singleton
 class RequestInterceptor @Inject constructor(
-    private var internetConnection: InternetConnection,
-    //private var userSession: UserSession
-) : Interceptor {
+    private var internetConnection: InternetConnection
+    ) : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
 
@@ -31,10 +29,10 @@ class RequestInterceptor @Inject constructor(
 
         val request = requestBuilder.build()
 
-        Applog.d("endpoint: ${request.url.toUrl()}")
-        Applog.d("headerMap: ${request.headers}")
-        Applog.d("queryMap: ${request.url.query}")
-        Applog.d("bodyMap: ${request.body}")
+        Applog.d("endpoint: ${request.url().url()}")
+        Applog.d("headerMap: ${request.headers()}")
+        Applog.d("queryMap: ${request.url().query()}")
+        Applog.d("bodyMap: ${request.body()}")
 
         return chain.proceed(request)
     }

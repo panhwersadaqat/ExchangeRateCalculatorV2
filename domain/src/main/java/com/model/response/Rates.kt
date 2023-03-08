@@ -8,10 +8,10 @@ response class of rates
  */
 @JsonClass(generateAdapter = true)
 data class Rates(
-    val uSD: Double? = 0.0,
-    val aED: Double? = 0.0,
-    val aRS: Double? = 0.0,
-    val aUD: Double? = 0.0,
-    val cAD: Double? = 0.0,
+    val USD: Double? = 0.0,
+    val AED: Double? = 0.0,
+    val PKR: Double? = 0.0,
+    val IDR: Double? = 0.0,
+    val KID: Double? = 0.0,
 
 )
