@@ -1,11 +1,18 @@
 package com.example.base.ui
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
+import com.example.base.R
 import com.example.base.broadcast_receivers.InternetStateReceiver
+import com.example.base.events.BaseDataEvents
 import com.example.base.factory.ToastFactory
 import com.example.base.viewmodels.BaseViewModel
 import javax.inject.Inject
@@ -13,6 +20,8 @@ import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity() {
     val TAG: String = this.javaClass.simpleName
+
+
 
     var isInternetConnected = false
 
@@ -24,12 +33,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
     lateinit var binding: ViewDataBinding
 
+    var messageDialog : AlertDialog? = null
 
 //    @Inject
 //    lateinit var bindingComponentImpl: DataBindingComponentImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*try {
+            super.onCreate(savedInstanceState)
+        }catch (e:Exception) {
+            changeConf()
+        }*/
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = DataBindingUtil.setContentView(this, layoutID())
         initializeComponents()
@@ -37,6 +52,23 @@ abstract class BaseActivity : AppCompatActivity() {
         setUpListeners()
 
     }
+
+/*    fun changeConf() {
+        when (this.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                openActivity(
+                    AuthenticationActivity::class.java,
+                    false
+                )
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+                showToast("redirect app")
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                showToast("redirect app")
+            }
+        }
+    }*/
 
     open fun setUpListeners() {}
     protected abstract fun initializeComponents()
@@ -61,6 +93,27 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun observeDataEvents(viewModel: BaseViewModel) {
+        viewModel.obDataEvent.observe(this, Observer {
+            var event = it.getEventIfNotHandled()
+            if (event != null)
+                when (event) {
+                    is BaseDataEvents.Exception -> showException(event.message)
+                    is BaseDataEvents.Error -> {
+                        if(viewModel.isNotify) {
+                            showError(event.message)
+                        }
+                    }
+                    is BaseDataEvents.CustomError -> {
+                        showFailureToast(event.message)
+                    }
+                    is BaseDataEvents.Toast -> showToast(event.message)
+                    is BaseDataEvents.Toast -> showSuccessToast(event.message)
+                    BaseDataEvents.ForceLogout -> forceLogout()
+                    is BaseDataEvents.ShowSuccessDialog-> {showMessageDialog()}
+                    else -> {}
+                }
+        })
+
         viewModel.isNetworkStatusNotify.observe(this) {
             var event = it.getEventIfNotHandled()
             if (event != null) {
@@ -78,7 +131,25 @@ abstract class BaseActivity : AppCompatActivity() {
         toastFactory.create(message,id)
     }
 
+    protected open fun showException(message: String) {
+        showToast(message, R.drawable.error_icon)
+    }
 
+    protected open fun showError(message: String) {
+        showToast(message,R.drawable.error_icon)
+    }
+    protected open fun showSuccessToast(message: String) {
+        showToast(message,R.drawable.success_icon)
+    }
+    protected fun showFailureToast(message: String) {
+        showToast(message, R.drawable.error_icon)
+    }
+
+
+
+    fun showMessageDialog(){
+        messageDialog?.show()
+    }
 
 
     override fun onResume() {

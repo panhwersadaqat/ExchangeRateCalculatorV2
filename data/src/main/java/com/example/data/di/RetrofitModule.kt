@@ -25,7 +25,7 @@ object RetrofitModule {
     ) = Retrofit.Builder()
         //.baseUrl(BuildConfig.BASE_URL)
             //TODO change base URL
-        .baseUrl("https://google.com/api/")
+        .baseUrl("https://open.er-api.com/v6/")
         .addConverterFactory(gsonConverterFactory)
         .client(okHttpClient)
         .build()
@@ -38,7 +38,7 @@ object RetrofitModule {
     ) = Retrofit.Builder()
         //TODO change base URL
         //.baseUrl(BuildConfig.BASE_URL)
-        .baseUrl("https://google.com/api/")
+        .baseUrl("https://open.er-api.com/v6/")
         .addConverterFactory(gsonConverterFactory)
         .build()
 

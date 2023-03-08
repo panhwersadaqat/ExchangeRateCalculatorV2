@@ -9,7 +9,7 @@
         android:theme="@style/Theme.MVVMCA"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".CurrencyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -31,10 +31,10 @@ class RequestInterceptor @Inject constructor(
 
         val request = requestBuilder.build()
 
-        Applog.d("endpoint: ${request.url().url()}")
-        Applog.d("headerMap: ${request.headers()}")
-        Applog.d("queryMap: ${request.url().query()}")
-        Applog.d("bodyMap: ${request.body()}")
+        Applog.d("endpoint: ${request.url.toUrl()}")
+        Applog.d("headerMap: ${request.headers}")
+        Applog.d("queryMap: ${request.url.query}")
+        Applog.d("bodyMap: ${request.body}")
 
         return chain.proceed(request)
     }

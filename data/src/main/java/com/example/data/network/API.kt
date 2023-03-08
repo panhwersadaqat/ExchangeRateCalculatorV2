@@ -6,12 +6,9 @@ object API {
 
    // val API = "${BuildConfig.BASE_URL}"
 
-    //TODO API heere
-    val API = "https://google.com/api/"
+    //TODO API here
+    val API = "https://open.er-api.com/v6/"
 
-    val version = "v1"
-
-
-    val RATELIST = "$API$version/abcd"
+    val RATELIST = "latest/USD"
 
 }

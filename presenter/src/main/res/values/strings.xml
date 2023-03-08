@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">MVVMCA</string>
+    <string name="app_name">ERC</string>
+
+    <string-array name="currency_codes">
+        <item>USD</item>
+        <item>AED</item>
+        <item>ARS</item>
+        <item>AUD</item>
+        <item>CAD</item>
+    </string-array>
 </resources>
