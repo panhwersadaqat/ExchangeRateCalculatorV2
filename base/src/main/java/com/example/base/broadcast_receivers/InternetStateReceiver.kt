@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
-import com.example.base.ui.BaseActivity
 import com.example.base.util.InternetConnection
+import com.example.base.ui.BaseActivity
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
