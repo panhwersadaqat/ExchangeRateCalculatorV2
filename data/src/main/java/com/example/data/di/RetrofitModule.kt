@@ -1,7 +1,6 @@
 package com.example.data.di
 
 import com.google.gson.Gson
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,9 +46,6 @@ object RetrofitModule {
     @Singleton
     fun provideGsonConverter(gson: Gson) = GsonConverterFactory.create(gson)
 
-    @Provides
-    @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
 
 
 }

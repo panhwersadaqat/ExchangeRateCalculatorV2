@@ -1,15 +1,14 @@
 package com.example.data.network
 
 import TypeReference
-import com.data.fromJson
 import com.example.data.util.Applog
 import com.exceptions.ServerException
 import com.exceptions.UnProcessableEntityException
 import com.exceptions._401Exception
 import com.exceptions._404Exception
+import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType
@@ -22,9 +21,7 @@ import javax.inject.Singleton
 
 @Singleton
 class NetworkCall @Inject constructor(
-    var apiInterface: ApiInterface,
-    var moshi: Moshi
-) {
+    var apiInterface: ApiInterface) {
     //creating general methods for calling GET/POST request
     @Throws(Exception::class)
     suspend inline fun <reified T> generalRequest(
@@ -35,7 +32,7 @@ class NetworkCall @Inject constructor(
             if (response.isSuccessful) {
                 var responseString = response.body()?.string()
                 val type = object : TypeReference<T>() {}.type
-                val model = moshi.fromJson<T>(responseString ?: "", type) as T?
+                val model =  Gson().fromJson<T>(responseString ?: "", type) as T?
                 emit(model)
             } else if (response.code() == 422) {
                 var errorResponse = response.errorBody()?.string() ?: "{}"

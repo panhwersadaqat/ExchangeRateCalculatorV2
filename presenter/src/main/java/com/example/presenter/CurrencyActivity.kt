@@ -15,13 +15,11 @@ import java.util.*
 class CurrencyActivity : BaseActivity(){
 
     private val viewModel : CurrencyViewModel by viewModels()
+
     //Selected country string, default is Afghanistan, since its the first country listed in the spinner
     private var selectedItem1: String? = "AFN"
     private var selectedItem2: String? = "AFN"
     override fun initializeComponents() {
-        //viewModel.getCurrencyList()
-
-        //Initialize both Spinner
         initSpinner()
     }
 
@@ -32,8 +30,6 @@ class CurrencyActivity : BaseActivity(){
             val event = it.getEventIfNotHandled()
             when(event) {
                 is CurrencyEvents.GetCurrencyList -> {
-                    //fillNotificationTypeList(event.response?: emptyList())
-                    showToast("success")
                         val map: Map<String, Rates>
 
                         map = event.response?.rates!!
@@ -51,7 +47,6 @@ class CurrencyActivity : BaseActivity(){
                             _viewBinding.etSecondCurrency.setText(formattedString)
 
                         }
-
 
                         //stop progress bar
                         _viewBinding.prgLoading.visibility = View.GONE
@@ -78,14 +73,6 @@ class CurrencyActivity : BaseActivity(){
 
     override fun setUpListeners() {
         val _viewbinding = binding as ActivityCurrencyBinding
-        /*view.btnConvert.setOnClickListener {
-            *//*viewModel.convert(
-                view.etFrom.text.toString(),
-                view.spFromCurrency.selectedItem.toString(),
-                view.spToCurrency.selectedItem.toString(),
-            )*//*
-        }*/
-
         //Convert button clicked - check for empty string and internet then do the conersion
         _viewbinding.btnConvert.setOnClickListener {
 
@@ -244,75 +231,5 @@ class CurrencyActivity : BaseActivity(){
      * Using coroutines flow, changes are observed and responses gotten from the API
      *
      */
-
-/*    @SuppressLint("SetTextI18n")
-    private fun observeUi() {
-        val _viewBinding = binding as ActivityCurrencyBinding
-
-        mainViewModel.data.observe(this, androidx.lifecycle.Observer {result ->
-
-            when(result.status){
-                Resource.Status.SUCCESS -> {
-                    if (result.data?.status == "success"){
-
-                        val map: Map<String, Rates>
-
-                        map = result.data.rates
-
-                        map.keys.forEach {
-
-                            val rateForAmount = map[it]?.rate_for_amount
-
-                            mainViewModel.convertedRate.value = rateForAmount
-
-                            //format the result obtained e.g 1000 = 1,000
-                            val formattedString = String.format("%,.2f", mainViewModel.convertedRate.value)
-
-                            //set the value in the second edit text field
-                            _viewBinding.etSecondCurrency.setText(formattedString)
-
-                        }
-
-
-                        //stop progress bar
-                        _viewBinding.prgLoading.visibility = View.GONE
-                        //show button
-                        _viewBinding.btnConvert.visibility = View.VISIBLE
-                    }
-                    else if(result.data?.status == "fail"){
-                        val layout = _viewBinding.mainLayout
-                        Snackbar.make(layout,"Ooops! something went wrong, Try again", Snackbar.LENGTH_LONG)
-                            //.withColor(ContextCompat.getColor(this, R.color.dark_red))
-                            .setTextColor(ContextCompat.getColor(this, R.color.white))
-                            .show()
-
-                        //stop progress bar
-                        _viewBinding.prgLoading.visibility = View.GONE
-                        //show button
-                        _viewBinding.btnConvert.visibility = View.VISIBLE
-                    }
-                }
-                Resource.Status.ERROR -> {
-
-                    val layout = _viewBinding.mainLayout
-                    Snackbar.make(layout,  "Oopps! Something went wrong, Try again", Snackbar.LENGTH_LONG)
-                        .withColor(ContextCompat.getColor(this, R.color.dark_red))
-                        .setTextColor(ContextCompat.getColor(this, R.color.white))
-                        .show()
-                    //stop progress bar
-                    _viewBinding.prgLoading.visibility = View.GONE
-                    //show button
-                    _viewBinding.btnConvert.visibility = View.VISIBLE
-                }
-
-                Resource.Status.LOADING -> {
-                    //stop progress bar
-                    _viewBinding.prgLoading.visibility = View.VISIBLE
-                    //show button
-                    _viewBinding.btnConvert.visibility = View.GONE
-                }
-            }
-        })
-    }*/
 }
 
