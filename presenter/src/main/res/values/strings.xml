@@ -21,4 +21,6 @@
     <string name="amount">Amount</string>
     <string name="result">Result</string>
     <string name="converted_amount">Converted Amount</string>
+    <string name="invalid_input">Invalid Input</string>
+    <string name="no_internet_error">You are not connected to the internet</string>
 </resources>

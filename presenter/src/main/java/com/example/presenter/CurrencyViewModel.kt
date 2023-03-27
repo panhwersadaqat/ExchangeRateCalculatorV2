@@ -29,10 +29,8 @@ class CurrencyViewModel @Inject constructor(
             authCodeUC(request).catch { exception ->
                 handleExceptions(exception)
                 onGetCurrencyFailed(exception.message.toString())
-                //hideLoader()
             }.collect {
                 onGetCurrencySuccess(it)
-                //hideLoader()
             }
         }
     }
